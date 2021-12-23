@@ -1,16 +1,24 @@
 package com.tristansmp;
 
+import com.lishid.openinv.internal.ISpecialPlayerInventory;
 import express.Express;
 import github.scarsz.discordsrv.DiscordSRV;
 import github.scarsz.discordsrv.dependencies.jda.api.entities.User;
 import github.scarsz.discordsrv.util.DiscordUtil;
+import org.bukkit.BanList;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Statistic;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.json.JSONArray;
 import org.json.simple.JSONObject;
 
-import static com.gmail.nossr50.api.ExperienceAPI.getPlayerRankSkill;
-import static com.gmail.nossr50.api.ExperienceAPI.getPowerLevelOffline;
+import java.util.Objects;
+import java.util.UUID;
+
+import static com.gmail.nossr50.api.ExperienceAPI.*;
+import static com.lishid.openinv.IOpenInv.*;
 import static org.bukkit.Bukkit.*;
 
 public class ReqHandler {
@@ -48,30 +56,33 @@ public class ReqHandler {
                     return;
                 }
             }
-
         });
 
-        app.get("/player/:username/mcmmo", (req, res) -> {
-            // get uuid from username
-            final String username = req.getParams().get("username");
+        app.get("/player/:uuid/mcmmo", (req, res) -> {
+            final UUID uuid = UUID.fromString(req.getParams().get("uuid"));
+
             try {
-                final Number powerLevel = getPowerLevelOffline(username);
                 final JSONObject obj = new JSONObject();
+
+                // convert uuid to player
+                final OfflinePlayer player = getOfflinePlayer(uuid);
+                final Number powerLevel = getPowerLevelOffline(player.getUniqueId());
+
                 obj.put("error", false);
                 obj.put("powerLevel", powerLevel);
-                obj.put("excavation", getPlayerRankSkill(username, "Excavation"));
-                obj.put("fishing", getPlayerRankSkill(username, "Fishing"));
-                obj.put("Herbalism", getPlayerRankSkill(username, "Herbalism"));
-                obj.put("mining", getPlayerRankSkill(username, "Mining"));
-                obj.put("woodcutting", getPlayerRankSkill(username, "Woodcutting"));
-                obj.put("archery", getPlayerRankSkill(username, "Archery"));
-                obj.put("axes", getPlayerRankSkill(username, "Axes"));
-                obj.put("swords", getPlayerRankSkill(username, "Swords"));
-                obj.put("taming", getPlayerRankSkill(username, "Taming"));
-                obj.put("unarmed", getPlayerRankSkill(username, "Unarmed"));
-                obj.put("acrobatics", getPlayerRankSkill(username, "Acrobatics"));
-                obj.put("alchemy", getPlayerRankSkill(username, "Alchemy"));
-                obj.put("repair", getPlayerRankSkill(username, "Repair"));
+                obj.put("excavation", getOfflineXPRaw(player, "Excavation"));
+                obj.put("fishing", getOfflineXPRaw(player, "Fishing"));
+                obj.put("Herbalism", getOfflineXPRaw(player, "Herbalism"));
+                obj.put("mining", getOfflineXPRaw(player, "Mining"));
+                obj.put("woodcutting", getOfflineXPRaw(player, "Woodcutting"));
+                obj.put("archery", getOfflineXPRaw(player, "Archery"));
+                obj.put("axes", getOfflineXPRaw(player, "Axes"));
+                obj.put("swords", getOfflineXPRaw(player, "Swords"));
+                obj.put("taming", getOfflineXPRaw(player, "Taming"));
+                obj.put("unarmed", getOfflineXPRaw(player, "Unarmed"));
+                obj.put("acrobatics", getOfflineXPRaw(player, "Acrobatics"));
+                obj.put("alchemy", getOfflineXPRaw(player, "Alchemy"));
+                obj.put("repair", getOfflineXPRaw(player, "Repair"));
 
                 res.send(obj.toJSONString());
             } catch (Exception e) {
@@ -81,6 +92,40 @@ public class ReqHandler {
                 res.send(obj.toJSONString());
             }
         });
+
+        app .get("/player/:uuid/inventory", (req, res) -> {
+            final UUID uuid = UUID.fromString(req.getParams().get("uuid"));
+            try {
+                final JSONObject obj = new JSONObject();
+
+                // convert uuid to player
+                final OfflinePlayer player = getOfflinePlayer(uuid);
+                final Inventory inventory = Objects.requireNonNull(player.getPlayer()).getInventory();
+                final JSONArray items = new JSONArray();
+                for (ItemStack item : inventory.getContents()) {
+                    if (item == null) {
+                        continue;
+                    }
+                    final JSONObject itemObj = new JSONObject();
+                    itemObj.put("id", item.getType().getId());
+                    itemObj.put("amount", item.getAmount());
+                    itemObj.put("data", item.getData().getData());
+                    items.put(itemObj);
+                }
+                obj.put("error", false);
+                obj.put("items", items);
+                res.send(obj.toJSONString());
+
+            } catch (
+                    Exception e) {
+                final JSONObject obj = new JSONObject();
+                obj.put("error", true);
+                obj.put("message", e.getMessage());
+                res.send(obj.toJSONString());
+            }
+        });
+
+
 
         app.get("/player/:username/stats", (req, res) -> {
             final String username = req.getParams().get("username");
