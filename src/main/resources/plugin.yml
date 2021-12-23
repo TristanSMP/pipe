@@ -1,8 +1,8 @@
-name: TSMP Api
+name: TSMPApi
 version: '${project.version}'
 main: com.tristansmp.api
 api-version: 1.18
-prefix: [ TSMP-API ]
+prefix: tsmpapi
 authors: [ twisttaan ]
 description: TristanSMP API
 website: https://tristansmp.com
