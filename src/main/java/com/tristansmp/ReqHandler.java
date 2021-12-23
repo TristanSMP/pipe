@@ -1,24 +1,18 @@
 package com.tristansmp;
 
-import com.lishid.openinv.internal.ISpecialPlayerInventory;
 import express.Express;
 import github.scarsz.discordsrv.DiscordSRV;
 import github.scarsz.discordsrv.dependencies.jda.api.entities.User;
 import github.scarsz.discordsrv.util.DiscordUtil;
-import org.bukkit.BanList;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Statistic;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-import org.json.JSONArray;
 import org.json.simple.JSONObject;
 
-import java.util.Objects;
 import java.util.UUID;
 
-import static com.gmail.nossr50.api.ExperienceAPI.*;
-import static com.lishid.openinv.IOpenInv.*;
+import static com.gmail.nossr50.api.ExperienceAPI.getOfflineXPRaw;
+import static com.gmail.nossr50.api.ExperienceAPI.getPowerLevelOffline;
 import static org.bukkit.Bukkit.*;
 
 public class ReqHandler {
@@ -92,40 +86,6 @@ public class ReqHandler {
                 res.send(obj.toJSONString());
             }
         });
-
-        app .get("/player/:uuid/inventory", (req, res) -> {
-            final UUID uuid = UUID.fromString(req.getParams().get("uuid"));
-            try {
-                final JSONObject obj = new JSONObject();
-
-                // convert uuid to player
-                final OfflinePlayer player = getOfflinePlayer(uuid);
-                final Inventory inventory = Objects.requireNonNull(player.getPlayer()).getInventory();
-                final JSONArray items = new JSONArray();
-                for (ItemStack item : inventory.getContents()) {
-                    if (item == null) {
-                        continue;
-                    }
-                    final JSONObject itemObj = new JSONObject();
-                    itemObj.put("id", item.getType().getId());
-                    itemObj.put("amount", item.getAmount());
-                    itemObj.put("data", item.getData().getData());
-                    items.put(itemObj);
-                }
-                obj.put("error", false);
-                obj.put("items", items);
-                res.send(obj.toJSONString());
-
-            } catch (
-                    Exception e) {
-                final JSONObject obj = new JSONObject();
-                obj.put("error", true);
-                obj.put("message", e.getMessage());
-                res.send(obj.toJSONString());
-            }
-        });
-
-
 
         app.get("/player/:username/stats", (req, res) -> {
             final String username = req.getParams().get("username");
