@@ -31,7 +31,7 @@ jobs:
         env:
              GITHUB_TOKEN: ${{ github.token }}
         with:
-            upload_url: ${{ steps.create_release.outputs.upload_url }
+            upload_url: ${{ steps.create_release.outputs.upload_url }}
             asset_path: ./target/TSMP-API.jar
             asset_name: TSMP-API.jar
             asset_content_type: application/jar
