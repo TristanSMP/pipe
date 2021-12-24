@@ -29,8 +29,9 @@ jobs:
       - name: Create Release
         id: create_release
         uses: shogo82148/actions-create-release@v1
-        
+
       - uses: shogo82148/actions-upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./target/TSMP-API.jar
+        
