@@ -55,26 +55,33 @@
     </build>
 
     <repositories>
+        <!-- mcMMO Repo -->
+        <repository>
+            <id>codemc-repo</id>
+            <url>https://repo.codemc.org/repository/maven-public/</url>
+
+        </repository>
+        <!-- PaperMC Repo -->
         <repository>
             <id>papermc-repo</id>
             <url>https://papermc.io/repo/repository/maven-public/</url>
         </repository>
+        <!-- Spigot Repo -->
         <repository>
             <id>sonatype</id>
             <url>https://oss.sonatype.org/content/groups/public/</url>
         </repository>
+        <!-- Express for Java Repo -->
         <repository>
             <id>jcenter</id>
             <url>https://jcenter.bintray.com</url>
         </repository>
+        <!-- DiscordSRV Repo -->
         <repository>
             <id>Scarsz-Nexus</id>
             <url>https://nexus.scarsz.me/content/groups/public/</url>
         </repository>
-        <repository>
-            <id>codemc-repo</id>
-            <url>https://repo.codemc.org/repository/maven-public/</url>
-        </repository>
+
 
     </repositories>
 
@@ -84,12 +91,6 @@
             <artifactId>mcMMO</artifactId>
             <version>2.1.205</version>
             <scope>provided</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>*</groupId>
-                    <artifactId>*</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.discordsrv</groupId>
