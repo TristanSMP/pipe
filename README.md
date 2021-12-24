@@ -17,21 +17,21 @@ https://api.tristansmp.com/player/f5e658ea-fe2a-4ea7-8df1-d5c08af78a69/mcmmo
 
 ```
 {
-   "repair":1050.0,
-   "fishing":282.0,
-   "axes":328.0,
-   "swords":10735.0,
+   "repair":1050,
+   "fishing":282,
+   "axes":328,
+   "swords":10735,
    "powerLevel":3741,
-   "alchemy":573.0,
-   "Herbalism":52.0,
-   "mining":840.0,
+   "alchemy":573,
+   "Herbalism":52,
+   "mining":840,
    "error":false,
-   "acrobatics":10656.0,
-   "woodcutting":248.0,
-   "excavation":6262.0,
-   "unarmed":986.0,
-   "archery":280.0,
-   "taming":1213.0
+   "acrobatics":10656,
+   "woodcutting":248,
+   "excavation":6262,
+   "unarmed":986,
+   "archery":280,
+   "taming":1213
 }
 ```
 
@@ -42,7 +42,7 @@ https://api.tristansmp.com/player/twisttaan/stats (only works when player is onl
    "kills":40892,
    "world":"world",
    "level":9,
-   "health":20.0,
+   "health":20,
    "jumps":266945,
    "experience":0.19999996,
    "uuid":"f5e658ea-fe2a-4ea7-8df1-d5c08af78a69",
