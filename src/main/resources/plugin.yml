@@ -1,8 +1,10 @@
-name: TSMPApi
+name: TSMPapi
 version: '${project.version}'
 main: com.tristansmp.api
 api-version: 1.18
 prefix: tsmpapi
 authors: [ twisttaan ]
+softdepend:
+  - 'DiscordSRV'
 description: TristanSMP API
 website: https://tristansmp.com
