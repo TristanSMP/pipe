@@ -11,7 +11,7 @@ import org.json.simple.JSONObject;
 
 import java.util.UUID;
 
-import static com.gmail.nossr50.api.ExperienceAPI.getOfflineXPRaw;
+import static com.gmail.nossr50.api.ExperienceAPI.getLevelOffline;
 import static com.gmail.nossr50.api.ExperienceAPI.getPowerLevelOffline;
 import static org.bukkit.Bukkit.*;
 
@@ -64,19 +64,19 @@ public class ReqHandler {
 
                 obj.put("error", false);
                 obj.put("powerLevel", powerLevel);
-                obj.put("excavation", getOfflineXPRaw(player, "Excavation"));
-                obj.put("fishing", getOfflineXPRaw(player, "Fishing"));
-                obj.put("Herbalism", getOfflineXPRaw(player, "Herbalism"));
-                obj.put("mining", getOfflineXPRaw(player, "Mining"));
-                obj.put("woodcutting", getOfflineXPRaw(player, "Woodcutting"));
-                obj.put("archery", getOfflineXPRaw(player, "Archery"));
-                obj.put("axes", getOfflineXPRaw(player, "Axes"));
-                obj.put("swords", getOfflineXPRaw(player, "Swords"));
-                obj.put("taming", getOfflineXPRaw(player, "Taming"));
-                obj.put("unarmed", getOfflineXPRaw(player, "Unarmed"));
-                obj.put("acrobatics", getOfflineXPRaw(player, "Acrobatics"));
-                obj.put("alchemy", getOfflineXPRaw(player, "Alchemy"));
-                obj.put("repair", getOfflineXPRaw(player, "Repair"));
+                obj.put("excavation", getLevelOffline(uuid, "Excavation"));
+                obj.put("fishing", getLevelOffline(uuid, "Fishing"));
+                obj.put("Herbalism", getLevelOffline(uuid, "Herbalism"));
+                obj.put("mining", getLevelOffline(uuid, "Mining"));
+                obj.put("woodcutting", getLevelOffline(uuid, "Woodcutting"));
+                obj.put("archery", getLevelOffline(uuid, "Archery"));
+                obj.put("axes", getLevelOffline(uuid, "Axes"));
+                obj.put("swords", getLevelOffline(uuid, "Swords"));
+                obj.put("taming", getLevelOffline(uuid, "Taming"));
+                obj.put("unarmed", getLevelOffline(uuid, "Unarmed"));
+                obj.put("acrobatics", getLevelOffline(uuid, "Acrobatics"));
+                obj.put("alchemy", getLevelOffline(uuid, "Alchemy"));
+                obj.put("repair", getLevelOffline(uuid, "Repair"));
 
                 res.send(obj.toJSONString());
             } catch (Exception e) {
