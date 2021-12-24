@@ -13,6 +13,7 @@ import java.util.UUID;
 
 import static com.gmail.nossr50.api.ExperienceAPI.getLevelOffline;
 import static com.gmail.nossr50.api.ExperienceAPI.getPowerLevelOffline;
+import static com.tristansmp.PlayerLookup.getUUID;
 import static org.bukkit.Bukkit.*;
 
 public class ReqHandler {
@@ -26,34 +27,31 @@ public class ReqHandler {
 
         app.get("/player/:username/discord", (req, res) -> {
             final String username = req.getParams().get("username");
-            final OfflinePlayer player = getOfflinePlayer(username);
-            final String discordId = DiscordSRV.getPlugin().getAccountLinkManager().getDiscordId(player.getUniqueId());
-            final JSONObject obj = new JSONObject();
+            final String discordId = DiscordSRV.getPlugin().getAccountLinkManager().getDiscordId(getUUID(username));
+
             if (discordId == null) {
+                final JSONObject obj = new JSONObject();
                 obj.put("error", true);
                 obj.put("message", "Player not linked to discord");
                 res.send(obj.toJSONString());
-                return;
             } else {
                 User user = DiscordUtil.getJda().getUserById(discordId);
+                final JSONObject obj = new JSONObject();
                 if (user == null) {
                     obj.put("error", true);
                     obj.put("message", "Couldn't find Discord User by ID. Maybe they left the tsmp server?");
-                    res.send(obj.toJSONString());
-                    return;
                 } else {
                     obj.put("error", false);
                     obj.put("discordId", discordId);
                     obj.put("discordTag", user.getAsTag());
                     obj.put("discordName", user.getName());
-                    res.send(obj.toJSONString());
-                    return;
                 }
+                res.send(obj.toJSONString());
             }
         });
 
-        app.get("/player/:uuid/mcmmo", (req, res) -> {
-            final UUID uuid = UUID.fromString(req.getParams().get("uuid"));
+        app.get("/player/:username/mcmmo", (req, res) -> {
+            final UUID uuid = getUUID(req.getParams().get("username"));
 
             try {
                 final JSONObject obj = new JSONObject();
@@ -86,6 +84,27 @@ public class ReqHandler {
                 res.send(obj.toJSONString());
             }
         });
+
+        app.get("/uuid/:username", (req, res) -> {
+            getLogger().info("/uuid/" + req.getParams().get("username"));
+            final String username = req.getParams().get("username");
+            final UUID uuid = getUUID(username);
+            final JSONObject obj = new JSONObject();
+            if (uuid == null) {
+                obj.put("error", true);
+                obj.put("message", "Player not found");
+                getLogger().info("Player not found");
+                res.send(obj.toJSONString());
+            } else {
+                obj.put("error", false);
+                obj.put("uuid", uuid.toString());
+                getLogger().info("Player found");
+                getLogger().info(uuid.toString());
+                getLogger().info(obj.toJSONString());
+                res.send(obj.toJSONString());
+            }
+        });
+
 
         app.get("/player/:username/stats", (req, res) -> {
             final String username = req.getParams().get("username");
