@@ -13,7 +13,7 @@ Nick is one of my friends whos always poking around with my api stuff. Just an i
 
 # Examples
 
-https://api.tristansmp.com/player/f5e658ea-fe2a-4ea7-8df1-d5c08af78a69/mcmmo
+https://api.tristansmp.com/players/uuid/f5e658ea-fe2a-4ea7-8df1-d5c08af78a69/mcmmo
 
 ```
 {
@@ -35,7 +35,7 @@ https://api.tristansmp.com/player/f5e658ea-fe2a-4ea7-8df1-d5c08af78a69/mcmmo
 }
 ```
 
-https://api.tristansmp.com/player/twisttaan/stats (only works when player is online, will fix soon)
+https://api.tristansmp.com/players/username/twisttaan/stats(only works when player is online, will fix soon)
 
 ```
 {
@@ -52,7 +52,7 @@ https://api.tristansmp.com/player/twisttaan/stats (only works when player is onl
 }
 ```
 
-https://api.tristansmp.com/player/twisttaan/discord
+https://api.tristansmp.com/players/username/twisttaan/discord
 
 ```
 {
@@ -60,6 +60,19 @@ https://api.tristansmp.com/player/twisttaan/discord
    "error":false,
    "discordTag":"tristan#0005",
    "discordName":"tristan"
+}
+```
+
+https://api.tristansmp.com/discord/users/id/97470053615673344/player
+
+```
+{
+	"discordId": "97470053615673344",
+	"error": false,
+	"uuid": "f5e658ea-fe2a-4ea7-8df1-d5c08af78a69",
+	"discordTag": "tristan#0005",
+	"discordName": "tristan",
+	"username": "twisttaan"
 }
 ```
 

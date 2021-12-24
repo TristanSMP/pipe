@@ -13,6 +13,7 @@ import java.util.UUID;
 
 import static com.gmail.nossr50.api.ExperienceAPI.getLevelOffline;
 import static com.gmail.nossr50.api.ExperienceAPI.getPowerLevelOffline;
+import static github.scarsz.discordsrv.DiscordSRV.getPlugin;
 import static org.bukkit.Bukkit.*;
 
 public class ReqHandler {
@@ -24,10 +25,10 @@ public class ReqHandler {
             res.send("this is tristan's very secret api for tristansmp, nick go away");
         });
 
-        app.get("/player/:username/discord", (req, res) -> {
+        app.get("/players/username/:username/discord", (req, res) -> {
             final String username = req.getParams().get("username");
             final OfflinePlayer player = getOfflinePlayer(username);
-            final String discordId = DiscordSRV.getPlugin().getAccountLinkManager().getDiscordId(player.getUniqueId());
+            final String discordId = getPlugin().getAccountLinkManager().getDiscordId(player.getUniqueId());
             final JSONObject obj = new JSONObject();
             if (discordId == null) {
                 obj.put("error", true);
@@ -43,6 +44,8 @@ public class ReqHandler {
                     return;
                 } else {
                     obj.put("error", false);
+                    obj.put("username", username);
+                    obj.put("uuid", player.getUniqueId().toString());
                     obj.put("discordId", discordId);
                     obj.put("discordTag", user.getAsTag());
                     obj.put("discordName", user.getName());
@@ -52,7 +55,34 @@ public class ReqHandler {
             }
         });
 
-        app.get("/player/:uuid/mcmmo", (req, res) -> {
+        app.get("/discord/users/id/:discordId/player", (req, res) -> {
+            final String discordId = req.getParams().get("discordId");
+            final User user = DiscordUtil.getJda().getUserById(discordId);
+            final JSONObject obj = new JSONObject();
+            if (user == null) {
+                obj.put("error", true);
+                obj.put("message", "Couldn't find Discord User by ID. Maybe they left the tsmp server?");
+                res.send(obj.toJSONString());
+            } else {
+                final UUID uuid = UUID.fromString(getPlugin().getAccountLinkManager().getUuid(user.getId()).toString());
+                final OfflinePlayer player = getOfflinePlayer(uuid);
+                if (player == null) {
+                    obj.put("error", true);
+                    obj.put("message", "Couldn't find player by UUID. Maybe they left the tsmp server?");
+                    res.send(obj.toJSONString());
+                } else {
+                    obj.put("error", false);
+                    obj.put("uuid", uuid.toString());
+                    obj.put("username", player.getName());
+                    obj.put("discordId", discordId);
+                    obj.put("discordTag", user.getAsTag());
+                    obj.put("discordName", user.getName());
+                    res.send(obj.toJSONString());
+                }
+            }
+        });
+
+        app.get("/players/uuid/:uuid/mcmmo", (req, res) -> {
             final UUID uuid = UUID.fromString(req.getParams().get("uuid"));
 
             try {
@@ -87,7 +117,7 @@ public class ReqHandler {
             }
         });
 
-        app.get("/player/:username/stats", (req, res) -> {
+        app.get("/players/username/:username/stats", (req, res) -> {
             final String username = req.getParams().get("username");
             final JSONObject obj = new JSONObject();
             final Player player = getPlayer(username);
