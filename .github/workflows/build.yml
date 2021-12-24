@@ -32,7 +32,7 @@ jobs:
           name: java-app
           path: "${{ github.workspace }}/target/*.jar"
           
-      - name: upload linux artifact
+      - name: upload artifact
         uses: actions/upload-release-asset@v1
         env:
              GITHUB_TOKEN: ${{ github.token }}
@@ -40,3 +40,4 @@ jobs:
             upload_url: ${{ github.workspace }}/target/TSMP-API.jar
             asset_path: ./target/TSMP-API.jar
             asset_name: TSMP-API.jar
+            asset_content_type: application/jar
