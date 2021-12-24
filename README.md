@@ -35,7 +35,7 @@ https://api.tristansmp.com/players/uuid/f5e658ea-fe2a-4ea7-8df1-d5c08af78a69/mcm
 }
 ```
 
-https://api.tristansmp.com/players/username/twisttaan/stats(only works when player is online, will fix soon)
+https://api.tristansmp.com/players/username/twisttaan/stats (only works when player is online, will fix soon)
 
 ```
 {
