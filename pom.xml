@@ -57,8 +57,8 @@
     <repositories>
         <!-- mcMMO Repo -->
         <repository>
-            <id>codemc-repo</id>
-            <url>https://repo.codemc.org/repository/maven-public/</url>
+            <id>neetgames</id>
+            <url>https://nexus.neetgames.com/repository/maven-releases/</url>
 
         </repository>
         <!-- PaperMC Repo -->
