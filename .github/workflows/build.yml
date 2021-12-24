@@ -38,6 +38,6 @@ jobs:
              GITHUB_TOKEN: ${{ github.token }}
         with:
             upload_url: ${{ github.workspace }}/target/TSMP-API.jar
-            asset_path: ./target/TSMP-API.jar
+            asset_path: ${{ github.workspace }}/target/TSMP-API.jar
             asset_name: TSMP-API.jar
             asset_content_type: application/jar
