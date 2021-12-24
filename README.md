@@ -17,21 +17,21 @@ https://api.tristansmp.com/players/uuid/f5e658ea-fe2a-4ea7-8df1-d5c08af78a69/mcm
 
 ```
 {
-   "repair":1050,
-   "fishing":282,
-   "axes":328,
-   "swords":10735,
-   "powerLevel":3741,
-   "alchemy":573,
-   "Herbalism":52,
-   "mining":840,
-   "error":false,
-   "acrobatics":10656,
-   "woodcutting":248,
-   "excavation":6262,
-   "unarmed":986,
-   "archery":280,
-   "taming":1213
+	"repair": 24,
+	"fishing": 1,
+	"axes": 56,
+	"swords": 620,
+	"powerLevel": 3742,
+	"alchemy": 1,
+	"Herbalism": 210,
+	"mining": 778,
+	"error": false,
+	"acrobatics": 1068,
+	"woodcutting": 128,
+	"excavation": 620,
+	"unarmed": 13,
+	"archery": 192,
+	"taming": 31
 }
 ```
 
@@ -56,10 +56,12 @@ https://api.tristansmp.com/players/username/twisttaan/discord
 
 ```
 {
-   "discordId":"97470053615673344",
-   "error":false,
-   "discordTag":"tristan#0005",
-   "discordName":"tristan"
+	"discordId": "97470053615673344",
+	"error": false,
+	"uuid": "f5e658ea-fe2a-4ea7-8df1-d5c08af78a69",
+	"discordTag": "tristan#0005",
+	"discordName": "tristan",
+	"username": "twisttaan"
 }
 ```
 
