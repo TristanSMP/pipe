@@ -62,3 +62,8 @@ https://api.tristansmp.com/player/twisttaan/discord
    "discordName":"tristan"
 }
 ```
+
+# Support
+
+If this helped you donating would be very kind as I do this as a hobby but hosting all this infrastructure costs quite a bit.
+https://www.tristansmp.com/donate
