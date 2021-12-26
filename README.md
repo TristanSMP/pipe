@@ -4,12 +4,6 @@ A helpful API to communicate directly to `tristansmp.com`.
 
 You can use this on your own server, credit to me or [TristanSMP](https://tristansmp.com) would be nice. Keep in mind you may want to edit the code as it has no config. Default port is `25567`.
 
-Fun Fact: When you go to the root link it responds with
-```
-this is tristan's very secret api for tristansmp, nick go away
-```
-Nick is one of my friends whos always poking around with my api stuff. Just an inside joke.
-
 # Examples
 
 https://api.tristansmp.com/players/uuid/f5e658ea-fe2a-4ea7-8df1-d5c08af78a69/mcmmo
