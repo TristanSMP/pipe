@@ -93,7 +93,10 @@ public class PlayersRoute {
             final String username = req.getParams().get("username");
             final JSONObject obj = new JSONObject();
             final Player player = getPlayer(username);
-
+            
+            if (getPlayerExact(username) == null)
+                res.send("Player offline, cannot lookup");
+            else
             try {
                 // Player Username
                 obj.put("username", player.getName());
