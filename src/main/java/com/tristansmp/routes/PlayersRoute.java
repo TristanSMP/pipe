@@ -93,7 +93,7 @@ public class PlayersRoute {
             final String username = req.getParams().get("username");
             final JSONObject obj = new JSONObject();
             final Player player = getPlayer(username);
-
+            
             try {
                 // Player Username
                 obj.put("username", player.getName());
@@ -130,6 +130,8 @@ public class PlayersRoute {
                 if (e.getMessage().contains("Cannot invoke \"org.bukkit.entity.Player.getName()\" because \"player\" is null")) {
                     obj.put("error", true);
                     obj.put("message", "Player not online, or not found");
+                    res.send(obj.toJSONString());
+ 
                 } else {
                     getLogger().info("Error: " + e.getMessage());
                     res.send("Error: " + e.getMessage());
