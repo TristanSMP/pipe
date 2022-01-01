@@ -6,5 +6,6 @@ prefix: tsmpapi
 authors: [ twisttaan ]
 softdepend:
   - 'DiscordSRV'
+  - 'EssentialsX'
 description: TristanSMP API
 website: https://tristansmp.com
