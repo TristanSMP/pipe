@@ -1,4 +1,6 @@
-# [api.tristansmp.com](https://api.tristansmp.com)
+> **Warning**: We are working on a plugin that allows you to interact with a Minecraft server over a REST API called "elytra", this plugin will be deprecated.
+
+# [pipe.tristansmp.com](https://api.tristansmp.com)
 
 A helpful API to communicate directly to `tristansmp.com`.
 
@@ -6,7 +8,7 @@ You can use this on your own server, credit to me or [TristanSMP](https://trista
 
 # Examples
 
-https://api.tristansmp.com/players/uuid/f5e658ea-fe2a-4ea7-8df1-d5c08af78a69/mcmmo
+https://pipe.tristansmp.com/players/uuid/f5e658ea-fe2a-4ea7-8df1-d5c08af78a69/mcmmo
 
 ```
 {
@@ -28,7 +30,7 @@ https://api.tristansmp.com/players/uuid/f5e658ea-fe2a-4ea7-8df1-d5c08af78a69/mcm
 }
 ```
 
-https://api.tristansmp.com/players/username/twisttaan/stats (only works when player is online, will fix soon)
+https://pipe.tristansmp.com/players/username/twisttaan/stats (only works when player is online, will fix soon)
 
 ```
 {
@@ -45,7 +47,7 @@ https://api.tristansmp.com/players/username/twisttaan/stats (only works when pla
 }
 ```
 
-https://api.tristansmp.com/players/username/twisttaan/discord
+https://pipe.tristansmp.com/players/username/twisttaan/discord
 
 ```
 {
@@ -58,7 +60,7 @@ https://api.tristansmp.com/players/username/twisttaan/discord
 }
 ```
 
-https://api.tristansmp.com/discord/users/id/97470053615673344/player
+https://pipe.tristansmp.com/discord/users/id/97470053615673344/player
 
 ```
 {
