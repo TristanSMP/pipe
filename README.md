@@ -1,6 +1,4 @@
-> **Warning**: We are working on a plugin that allows you to interact with a Minecraft server over a REST API called "elytra", this plugin will be deprecated.
-
-# [pipe.tristansmp.com](https://api.tristansmp.com)
+# [pipe.tristansmp.com](https://pipe.tristansmp.com)
 
 A helpful API to communicate directly to `tristansmp.com`.
 
